@@ -1,0 +1,62 @@
+html
+  head
+    title #{nome}
+    style
+        include styles.css
+  body
+    .poster
+        img(src=fotoPoster, alt=nome)
+    .info
+        h2 Gêneros
+        ul
+        each genero in generos
+            li= genero
+        h2 Resumo
+        p= resumo
+        h2 Elenco
+        ul.elenco
+        each ator in elenco
+            li
+            img(src=ator.foto, alt=ator.nome)
+            p #{ator.nome} como #{ator.personagem}
+        h2 Nota
+        p.nota #{nota}
+    .catalog
+      each movie in temporadas
+        .movie
+          img.movie-poster(src=movie.poster, alt=movie.resumo)
+          .movie-details
+            h2.movie-title= nome
+            p.movie-summary= movie.resumo
+            p.movie-info
+              strong Temporada:
+              |  #{movie.numero}
+              br
+              strong Episódios:
+              |  #{movie.numero_episodios}
+              br
+              strong Data de Exibição:
+              |  #{movie.exibicao}
+              br
+            a(href=`#temporada-${movie.numero}`) Ver Episódios
+          .clear
+    section
+        h2 Temporadas
+        ul
+            each temporada in temporadas
+                li(id=`temporada-${temporada.numero}`)
+                    a(href=`#temporada-${temporada.numero}`)
+                    .temporada-info
+                        h3 Temporada #{temporada.numero}
+                        p Número de Episódios: #{temporada.numero_episodios}
+                        p Data de Exibição: #{temporada.exibicao}
+                        img(src=temporada.poster, alt=nome)
+                        p #{temporada.resumo}
+                    ul.episodios
+                    each episodio in temporada.episodios
+                        li.episodio-info
+                        h4 Episódio #{episodio.numero}
+                        p Nome: #{episodio.nome}
+                        p Nota: #{episodio.nota}
+                        img(src=episodio.foto, alt=episodio.nome)
+                        p #{episodio.resumo}
