@@ -16,11 +16,11 @@ database.once('connected', () => {
 })
 
 const app = express()
-app.use(express.json)
+app.use(express.json())
 
 const routes = require('./routes/routes')
 app.use('/api', routes)
 
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}/`);
-  });
+});
